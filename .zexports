@@ -1,0 +1,8 @@
+# User configuration
+export MANPATH="/usr/local/man:$MANPATH"
+export WINHOME="/mnt/c/Users/sbeales"
+export PATH="$PATH:/bin/python2:/usr/bin/python3"
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+
+# You may need to manually set your language environment
+export LANG=en_US.UTF-8
