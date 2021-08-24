@@ -26,3 +26,5 @@ gpgkey
 .pki/nssdb/key4.db
 .pki/nssdb/pkcs11.txt
 .systemd-env
+.config/google-chrome/CrashpadMetrics-active.pma
+.config/google-chrome/BrowserMetrics/BrowserMetrics-61243FD2-24A.pma

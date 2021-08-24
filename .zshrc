@@ -65,11 +65,12 @@ if [ -f ~/.zaliases ]; then
     . ~/.zaliases;
 fi  
 
-
 if [ -f ~/.zdos ]; then 
     . ~/.zdos;
 fi  
 
-cd 
+if [ -f ~/.zstartup ]; then 
+    . ~/.zstartup;
+fi  
 
-ps -C postgresql &> /dev/null || sudo /etc/init.d/postgresql start &> /dev/null
+cd 
