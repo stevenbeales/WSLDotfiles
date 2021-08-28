@@ -123,8 +123,4 @@ if [ -f ~/.zdos ]; then
     . ~/.zdos;
 fi  
 
-if [ -f ~/.zstartup ]; then 
-    . ~/.zstartup;
-fi  
-
 cd 

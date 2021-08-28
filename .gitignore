@@ -30,3 +30,7 @@ gpgkey
 .config/google-chrome/BrowserMetrics/BrowserMetrics-61243FD2-24A.pma
 .irb-history
 .viminfo
+.yarnrc
+.gitignore
+.lesshst
+.systemd-env
