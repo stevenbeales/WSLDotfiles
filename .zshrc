@@ -115,6 +115,10 @@ if [ -f ~/.zexports ]; then
     . ~/.zexports;
 fi  
 
+if [ -f ~/.zfunctions ]; then 
+    . ~/.zfunctions;
+fi  
+
 if [ -f ~/.zaliases ]; then 
     . ~/.zaliases;
 fi  

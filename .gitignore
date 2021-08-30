@@ -8,6 +8,9 @@ node_modules
 .conda
 anaconda3
 .npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 .rvm
 .vscode-server
 .solargraph
@@ -34,3 +37,14 @@ gpgkey
 .gitignore
 .lesshst
 .systemd-env
+.config/google-chrome/Local State
+.config/google-chrome/Crash Reports/settings.dat
+%*
+*.sw[a-z]
+*.un~
+.netrwhist
+Session.vim
+.config/google-chrome/BrowserMetrics/BrowserMetrics-612A87E6-609.pma
+.config/google-chrome/BrowserMetrics/BrowserMetrics-612A87FF-64B.pma
+.config/google-chrome/CrashpadMetrics.pma
+.dbus/session-bus/554f63f7f20b830cc6224185611f2bbc-172.31.0.1_0

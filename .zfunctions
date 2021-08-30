@@ -1,0 +1,111 @@
+# Search for text within the current directory.
+
+s() {
+    grep --color=always "$*" \
+         --exclude-dir=".git" \
+         --exclude-dir="node_modules" \
+         --ignore-case \
+         --recursive \
+         . \
+        | less --no-init --raw-control-chars
+          #    │         └─ Display ANSI color escape sequences in raw form.
+          #    └─ Don't clear the screen after quitting less.
+}
+
+vdiff () {
+    if [ "${#}" -ne 2 ] ; then
+        echo "vdiff requires two arguments"
+        echo "  comparing dirs:  vdiff dir_a dir_b"
+        echo "  comparing files: vdiff file_a file_b"
+        return 1
+    fi
+
+    local left="${1}"
+    local right="${2}"
+
+    if [ -d "${left}" ] && [ -d "${right}" ]; then
+        vim +"DirDiff ${left} ${right}"
+    else
+        vim -d "${left}" "${right}"
+    fi
+}
+
+dtags () {
+    local image="${1}"
+
+    wget -q "https://registry.hub.docker.com/v1/repositories/${image}/tags" -O - \
+        | tr -d '[]" ' | tr '}' '\n' | awk -F: '{print $3}'
+}
+
+pw () {
+    pwgen -sync "${1:-48}" -1 | if command -v pbcopy > /dev/null 2>&1; then pbcopy; else xclip; fi
+}
+
+weather () {
+    curl "https://wttr.in/${1}"
+}
+
+change-terminal-font () {
+    [[ -z "${1}" || -z "${2}" ]] && echo "Usage: change-terminal-font FROM_SIZE TO_SIZE"
+
+    local from="${1}"
+    local to="${2}"
+    local windows_user="$(powershell.exe '$env:UserName' | sed -e 's/\r//g')"
+    local terminal_config="/c/Users/${windows_user}/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
+
+    perl -i -pe "s/\"fontSize\": ${from}/\"fontSize\": ${to}/g" "${terminal_config}"
+}
+
+start-recording () {
+    local from_terminal_font_size="9"
+    local to_terminal_font_size="18"
+
+    mv "${HISTFILE}" "${HISTFILE}.bak"
+    local HISTSIZE=0
+
+    rm -f /tmp/%*
+    change-terminal-font "${from_terminal_font_size}" "${to_terminal_font_size}"
+
+    if [[ "${1}" = "--obs" ]]; then
+        cd "/c/Program Files/obs-studio/bin/64bit"
+        wslview obs64.exe
+        cd - > /dev/null 2>&1
+    fi
+
+    cat << EOF
+-> Shell history has been backed up to ${HISTFILE}
+-> Temporary Vim files have been deleted from /tmp
+-> Terminal font has been increased to ${to_terminal_font_size}
+
+Plan to switch between tmux sessions?
+  - 1. Leader + CTRL + s to save your sessions
+  - 2. tmux kill-server
+
+Going to use a browser?
+  - Use one with a cleared history
+
+Various tips:
+  - Use CTRL + L instead of running clear to clear your screen as needed
+  - Make sure your windows are positioned correctly with Sizer
+  - Be mindful of secrets in any .env file!
+  - Make sure OBS is actually recording / streaming (if and when applicable)
+EOF
+}
+
+stop-recording () {
+    local from_terminal_font_size="18"
+    local to_terminal_font_size="9"
+
+    mv "${HISTFILE}.bak" "${HISTFILE}"
+    fc -R
+
+    change-terminal-font "${from_terminal_font_size}" "${to_terminal_font_size}"
+
+    cat << EOF
+-> Shell history has been restored
+-> Terminal font has been reverted to ${to_terminal_font_size}
+
+Nice work, here's a few things to maybe do:
+  - Restore tmux sessions by running tmux and then Leader + CTRL + r
+EOF
+}
