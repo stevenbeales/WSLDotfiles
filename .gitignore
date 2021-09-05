@@ -705,3 +705,4 @@ Session.vim
 .config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
 .config/xfce4/xfconf/xfce-perchannel-xml/xfce4-settings-manager.xml
 .config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+.oh-my-zsh
