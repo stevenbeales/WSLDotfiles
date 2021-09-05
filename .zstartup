@@ -1,0 +1,8 @@
+
+sudo service postgresql restart 
+
+if [[ ! $(pgrep -f chromedriver) ]]; then
+  chromedriver --version &
+fi
+
+cd 
