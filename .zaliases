@@ -13,8 +13,6 @@ alias convertCRLF='find ./ -type f -print0 | xargs -0 dos2unix --'
 alias cpi="cp -i"
 alias cppcompile='c++ -std=c++11 -stdlib=libc++'
 alias cs='clear;ls'
-alias ct="ctags -R --exclude=.git --exclude=node_modules"
-alias d='dirs -v | head -10'
 alias diffdirs='diff -urp'
 
 alias zshconfig="code ~/.zshrc"
@@ -33,7 +31,6 @@ alias generate_secret="openssl rand -base64 32"
 # Download file and save it with filename of remote file
 alias get="curl -O -L"
 alias headerc='curl -I --compress'
-alias hg="history | grep"
 alias hosts='sudo code /etc/hosts'
 
 # Show active network interfaces
@@ -49,21 +46,17 @@ alias map="xargs -n1"
 alias mvi="mv -i"
 alias myip='curl http://ipecho.net/plain'
 alias null='/dev/null'
-alias o=open
 # Display processes listening to TCP/IP ports
 alias openports="lsof -n -P -i4TCP|grep LISTEN"
-alias p='cat'
 alias path='echo -e ${PATH//:/\\n}'
 alias printers='lpstat -p'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
-alias q='exit'
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec ${SHELL} -l"
 alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias removeempty="find . -type d -empty -delete"
 alias sha1='openssl sha1'
 alias size="du -h"
-alias t='time'
 alias tlf="tail -f"
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 # A less noisy tree list
@@ -72,7 +65,6 @@ alias tre="tree -I 'node_modules|.git|test|.DS_Store' --noreport -C -a --dirsfir
 alias truncate="cp /dev/null"
 alias week='date +%V'
 alias where='which'
-alias x="exit"
 # clean terminal history
 alias yolo="history -c && clear"
 
@@ -98,10 +90,6 @@ alias -s ace="unace l"
 
 alias rmpyc="find . -type d -name '__pycache__' -exec rm -rf {} \;"
 
-alias jek="RUBYOPT='-W0' bundle exec jekyll serve --config _config.yml,_config.dev.yml --drafts --livereload"
-
-alias ymp3="youtube-dl --extract-audio --audio-format mp3"
-
 alias octal="stat -c '%a %n'"
 
 alias follow="namei -om"
@@ -112,10 +100,6 @@ alias 755d="find . -type d -exec chmod 755 {} \;"
 
 alias 644f="find . -type f -exec chmod 644 {} \;"
 
-if ! command -v brew > /dev/null 2>&1; then
-    alias open="/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe"
-fi
-
 alias vss="sort -u ${HOME}/.vim/spell/en.utf-8.add -o ${HOME}/.vim/spell/en.utf-8.add"
 
 alias vdt="rm /tmp/%*"
@@ -123,8 +107,6 @@ alias vdt="rm /tmp/%*"
 alias gi="git init && git symbolic-ref HEAD refs/heads/main"
 
 alias pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
-
-alias k="kubectl"
 
 # A way to define and run tasks in a project. It's like make except it's pure
 # Bash so there's no make limitations like not being able to forward arguments.
@@ -164,11 +146,6 @@ alias show-desktop-icons="gsettings set org.gnome.desktop.background show-deskto
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Open from the terminal.
-
-alias o="xdg-open"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Update applications and CLTs.
 
